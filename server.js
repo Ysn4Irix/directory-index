@@ -35,7 +35,7 @@ app.use(
 )
 
 app.use('/api', router)
-app.use('/', serveIndex('uploads', { icons: true }))
+app.use('/', express.static('uploads'), serveIndex('uploads', { icons: true }))
 
 app.use(require('./middlewares/notFoundHandler'))
 
