@@ -48,6 +48,22 @@ curl -F 'file=@Desktop/test.txt' http://localhost:4000/api/upload | json_pp
 
 Navigate to `http://localhost:4000` to see the list of files uploaded
 
+You can make a `GET` request to `http://localhost:4000/api/delete/filename` to delete a file where `filename` is the uploaded filename with extension.
+
+```sh
+curl http://localhost:4000/api/delete/test-upload-1670023377628.txt | json_pp
+```
+
+```json
+# Example response
+{
+  "message": "🎉 File deleted",
+  "error": false,
+  "code": 200,
+  "results": {}
+}
+```
+
 ### Development
 
 Once you've cloned the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
