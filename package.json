@@ -1,0 +1,56 @@
+{
+	"name": "directory-index",
+	"version": "1.0.0",
+	"description": "an express node app for serving files inside a directory with api support for uploading files",
+	"main": "server.js",
+	"scripts": {
+		"start": "cross-env NODE_ENV=production node server.js",
+		"dev": "cross-env NODE_ENV=development nodemon server.js",
+		"format": "prettier --write \"./**/*.{js,json}\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Ysn4Irix/directory-index.git"
+	},
+	"keywords": [
+		"api",
+		"express",
+		"nodejs",
+		"javascript",
+		"directory-index",
+		"indexing",
+		"serve-files"
+	],
+	"author": {
+		"name": "Ysn4Irix",
+		"email": "ysn4irix@gmail.com",
+		"url": "https://ysnirix.live"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "git+https://github.com/Ysn4Irix/directory-index/issues"
+	},
+	"homepage": "https://github.com/Ysn4Irix/directory-index#readme",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"helmet": "^6.0.0",
+		"morgan": "^1.10.0",
+		"multer": "^1.4.5-lts.1",
+		"response-time": "^2.3.2",
+		"serve-index": "^1.9.1",
+		"signale": "^1.4.0"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.13",
+		"@types/node": "^18.7.13",
+		"cross-env": "^7.0.3",
+		"nodemon": "^2.0.19",
+		"prettier": "^2.7.1"
+	},
+	"engines": {
+		"npm": ">=6.0.0",
+		"node": ">=15.0.0"
+	}
+}
