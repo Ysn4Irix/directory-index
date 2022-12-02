@@ -1,6 +1,8 @@
 const { success, error } = require('../helpers/apiResponse')
 const logger = require('../helpers/logger')
 const formatBytes = require('../helpers/formatBytes')
+const { unlink } = require('fs')
+const { join } = require('path')
 
 module.exports = {
 	/**
@@ -21,6 +23,33 @@ module.exports = {
 					size: formatBytes(file.size)
 				})
 			)
+		} catch (err) {
+			logger.error(err.message)
+			res.status(500).json(
+				error(
+					'Oops! We have an problem in our backend 😢',
+					res.statusCode
+				)
+			)
+		}
+	},
+	/**
+	 * @desc check whatever the server is up or not
+	 * @param {import('@types/express').Request} req
+	 * @param {import('@types/express').Response} res
+	 * @returns {object} object
+	 */
+	deleteFile: (req, res) => {
+		const { filename } = req.params
+
+		try {
+			unlink(`${join(__dirname, '../uploads')}/${filename}`, err => {
+				if (err) {
+					logger.error(err.message)
+				}
+
+				res.status(200).json(success('🎉 File deleted', {}, 200))
+			})
 		} catch (err) {
 			logger.error(err.message)
 			res.status(500).json(
