@@ -1,4 +1,4 @@
-FROM --platform=amd64 node:18
+FROM --platform=arm64 node:18
 WORKDIR /app
 COPY package.json ./
 RUN npm ci
