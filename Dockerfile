@@ -1,6 +1,6 @@
 FROM node:18.7.0-alpine3.15
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json ./
 RUN npm ci
 COPY . .
 RUN npm prune --production
