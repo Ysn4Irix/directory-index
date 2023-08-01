@@ -1,29 +1,19 @@
 require('dotenv').config()
 const express = require('express')
-const morgan = require('morgan')
 const helmet = require('helmet')
 const cors = require('cors')
 const responseTime = require('response-time')
 const serveIndex = require('serve-index')
 const logger = require('./helpers/logger')
 const { router } = require('./routes')
+const { join } = require('path')
 const app = express()
-const { PORT, NODE_ENV } = process.env
 
-if (NODE_ENV === 'development') app.use(morgan('dev'))
 app.use(responseTime())
 app.use(helmet())
 app.use(
-	helmet.contentSecurityPolicy({
-		useDefaults: true,
-		directives: {
-			'script-src': ["'self'", "'unsafe-inline'"]
-		}
-	})
-)
-app.use(
 	cors({
-		origin: NODE_ENV === 'production' ? '' : 'http://localhost:4000',
+		origin: '*',
 		optionsSuccessStatus: 200
 	})
 )
@@ -35,13 +25,19 @@ app.use(
 )
 
 app.use('/api', router)
-app.use('/', express.static('uploads'), serveIndex('uploads', { icons: true }))
+app.use(
+	'/',
+	express.static(join(__dirname, './uploads')),
+	serveIndex('uploads', { icons: true })
+)
 
 app.use(require('./middlewares/notFoundHandler'))
 
+const PORT = process.env.PORT || 4000
+const HOST = process.env.HOST || 'localhost'
 const server = app.listen(PORT, () => {
 	logger.success(
-		`🚀 Server started => listening on PORT: ${PORT} with processId: ${process.pid}`
+		`🚀 Server started at HOST: ${HOST} on PORT: ${PORT} with processId: ${process.pid}`
 	)
 })
 

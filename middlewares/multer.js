@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
 			null,
 			`${file.originalname
 				.split('.')[0]
-				.toLowerCase()}-${Date.now()}${extname(file.originalname)}`
+				.toLowerCase()}.${Date.now()}${extname(file.originalname)}`
 		)
 	}
 })

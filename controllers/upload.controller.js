@@ -6,7 +6,6 @@ const { join } = require('path')
 
 module.exports = {
 	/**
-	 * @desc check whatever the server is up or not
 	 * @param {import('@types/express').Request} req
 	 * @param {import('@types/express').Response} res
 	 * @returns {object} object
@@ -34,7 +33,6 @@ module.exports = {
 		}
 	},
 	/**
-	 * @desc check whatever the server is up or not
 	 * @param {import('@types/express').Request} req
 	 * @param {import('@types/express').Response} res
 	 * @returns {object} object
