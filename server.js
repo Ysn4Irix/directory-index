@@ -10,7 +10,11 @@ const { join } = require('path')
 const app = express()
 
 app.use(responseTime())
-app.use(helmet())
+app.use(
+	helmet({
+		contentSecurityPolicy: false
+	})
+)
 app.use(
 	cors({
 		origin: '*',
